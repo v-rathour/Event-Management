@@ -9,9 +9,9 @@ const isLoggedIn = (req, res, next) => {
 };
 
 const isContributor = (req, res, next) => {
-  if (!req.user.role || req.user.role != "Organizer") {
+  if (!req.user.role || req.user.role != "contributer") {
     req.flash("error", "you don't have the permission to do that");
-    return res.redirect("/movies");
+    return res.redirect("/event");
   }
   next();
 };

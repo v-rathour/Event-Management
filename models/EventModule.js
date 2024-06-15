@@ -13,13 +13,11 @@ let EventSchema = new mongoose.Schema({
     trim: true,
   },
   eventdate: {
-    type: Number,
-    min: 0,
+    type: Date,
     required: true,
   },
   eventTime: {
-    type: Number,
-    min: 0,
+    type: String,
     required: true,
   },
   desc: {

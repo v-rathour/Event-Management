@@ -5,7 +5,7 @@
     <div class="col-6 bg-info mx-auto mt-5 mb-5">
         <form action="/event" method="POST"class="needs-validation" style="margin: 30px 10px;" novalidate>
             <div class="mb-3">
-                <label for="naam" class="form-label">Name: </label>
+                <label for="name" class="form-label">Name: </label>
                 <input type="text" class="form-control" name="name" id="naam" placeholder="Name of Event" required>
                 <!-- look good  -->
                 <div class="valid-feedback">
@@ -35,7 +35,7 @@
             <div class="mb-3">
                 <label for="paisa" class="form-label">Start Date: </label>
                 <div class="input-group mb-3">
-                    <input class="form-control" type="date" name="year" id="paisa"
+                    <input class="form-control" type="date" name="eventdate" id="paisa"
                         placeholder="Release Year of Movie" required>
                 </div>
                 <!-- look good  -->
@@ -51,7 +51,7 @@
             <div class="mb-3">
                 <label for="paisa" class="form-label">Start Time: </label>
                 <div class="input-group mb-3">
-                    <input class="form-control" type="time" name="year" id="paisa" placeholder="Release Year of Movie" required>
+                    <input class="form-control" type="time" name="eventTime" id="paisa" placeholder="Release Year of Movie" required>
                 </div>
                 <!-- look good  -->
                 <div class="valid-feedback">
@@ -65,9 +65,9 @@
             </div>
             
             <div class="mb-3">
-                <label for="paisa" class="form-label">Event Link: </label>
+                <label for="eventLink" class="form-label">Event Link: </label>
                 <div class="input-group mb-3">
-                    <input class="form-control" type="text" name="year" id="paisa" placeholder="Event Link" required>
+                    <input class="form-control" type="text" name="eventLink" id="paisa" placeholder="Event Link" required>
                 </div>
                 <!-- look good  -->
                 <div class="valid-feedback">
