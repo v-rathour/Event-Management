@@ -1,0 +1,170 @@
+<%- include('../partials/header') %>
+
+<style>
+    .title{
+    text-align: center;
+    font-size: 5rem;
+    padding-top: 1.5rem;
+    font-weight: 600;
+    color: var(--color3);
+    }
+
+    .search-wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 600px;
+    height: 5rem;
+    background: #1C2541;
+    padding: 1rem;
+    border-radius: 2rem;
+    color: #fff;
+    margin: 0 auto;
+    margin-top: 5rem;
+    } 
+
+    #search{
+    margin: 0 0.5rem 0 0.5rem;
+    width: 100%;
+    border: none;
+    outline: none;
+    background: #1C2541;
+    color: #fff;
+    }
+
+    #search::placeholder{
+    color: #6FFFE9;
+    font-size: 1rem;
+    opacity: 0.7;
+    }
+
+    .fa:hover{
+    color: #FFFF00;
+    }
+
+    #container{
+        height: 500px;
+        width: 100%;
+    }
+
+    .cross{
+        padding-right: 2px;
+    }
+
+    .cross:hover{
+        cursor: pointer;
+    }
+
+    #none{
+        font-size: 2rem; 
+        text-align: center;
+        margin: 5px;
+        font-weight: 900;
+    }
+
+    h1{
+        color: #fff;
+        text-shadow: 3px 3px 20px #b72970,
+            -2px 1px 30px #b72970;
+        text-align: center;
+        font-size: 3rem;
+    }
+</style>
+
+   
+<div class="col-lg-6 mt-3 mx-auto" style="width: 100%;">
+    <%- include('../partials/flash.ejs') %>
+</div>
+
+
+<div id="container">
+    <div class="title">Search For Movie</div>
+    <div class="search-wrapper">
+        <div class="fa fa-search"></div>
+        <input
+            type="text"
+            name=""
+            id="search"
+            placeholder="Search event or Web Series Here"
+            onkeyup="search()"
+        />
+        <div class="cross" onclick="clearInput()">❌</div>
+    </div>
+</div>
+
+<div class="row mt-5 " style="background-color: lightgray;">
+    <h1 style="margin-top: 10px;">event</h1>
+
+    <div id="event">
+        <p id="none" style="display: none">
+            Sorry, The movie you were looking for is not available.
+        </p>
+
+        <% for(let item of event){ %>
+
+            <div class="col-lg-4 product-card mb-3 hello">
+                <div class="card text-center shadow mt-3 mx-auto" style="width: 18rem;">
+                    <img src="<%=item.img%>" class="card-img-top img" alt="...">
+                    <div class="card-body">
+                        <h3 class="card-title">
+                            <%= item.name %>
+                        </h3>
+                        <h5 class="card-title"> Event date:- <%= item.eventdate %>
+                        </h5>
+                        <h5 class="card-title"> Event Time:- <%= item.eventTime %>
+                        </h5>
+                         <h6 class="card-title">
+                            Event Link : <%= item.eventLink %>
+                         </h6>
+                        <p class="card-text">
+                            <%= item.desc.substring(0,20) %>...
+                        </p>
+                        <a href="/event/<%= item._id%>" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+
+            </div>
+
+        <% } %>
+    </div>
+</div>
+
+
+<%- include('../partials/footer') %>
+
+<script>
+    const search = ()=>{
+        const searchBox = document.getElementById('search').value.toUpperCase() ;
+        const storeevent = document.getElementById('event') ;
+        const event = document.querySelectorAll('.hello') ;
+        const eventName = storeevent.getElementsByTagName('h3') ;
+
+        let found = false ;
+
+        for(let i=0; i<eventName.length; i++){
+            let match = event[i].getElementsByTagName('h3')[0] ;
+            
+            if(match){
+                let val = match.textContent || match.innerHTML ;
+                
+                if(val.toUpperCase().indexOf(searchBox) > -1){
+                    event[i].style.display = "" ;
+                    found = true ;
+                } else{
+                    event[i].style.display = "none" ;
+                }
+            }
+        }
+
+        if(found === false) {
+            document.getElementById('none').style.display = "" ;
+        } else{
+            document.getElementById('none').style.display = "none" ;
+        }
+
+    }
+
+    const clearInput = ()=>{
+        document.getElementById('search').value = "" ;
+    }
+</script>
